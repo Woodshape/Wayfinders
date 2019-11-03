@@ -7,11 +7,17 @@ public class PlayerController : MonoBehaviour
     public Transform gunHand;
     public float moveSpeed;
 
+    public GameObject bulletGO;
+    public Transform bulletPoint;
+
     private Rigidbody2D _myRigidbody;
     private Animator _myAnimator;
     private Camera _mainCamera;
 
     private Vector2 moveInput;
+
+    public float timeBetweenShots = 1f;
+    private float shotCounter;
 
     // Start is called before the first frame update
     void Start()
@@ -54,6 +60,19 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
         gunHand.rotation = Quaternion.Euler(0f, 0f, angle);
+
+        //TODO: implement reload mechanic - based on shot rythm?
+        // maybe we only "use up" ammunition of we miss a beat?
+        shotCounter -= Time.deltaTime;
+
+        if (Input.GetButtonDown("Fire1") || Input.GetButton("Fire1"))
+        {
+            if (shotCounter <= 0)
+            {
+                Instantiate(bulletGO, bulletPoint.position, bulletPoint.rotation);
+                shotCounter = timeBetweenShots;
+            }
+        }
     }
 
     private void HandleAnimation()

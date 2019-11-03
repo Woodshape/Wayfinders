@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed;
 
     private Rigidbody2D _myRigidbody;
+    private Animator _myAnimator;
+    private Camera _mainCamera;
 
     private Vector2 moveInput;
 
@@ -15,6 +17,8 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         _myRigidbody = GetComponent<Rigidbody2D>();
+        _myAnimator = GetComponent<Animator>();
+        _mainCamera = Camera.main;
     }
 
     // Update is called once per frame
@@ -23,10 +27,15 @@ public class PlayerController : MonoBehaviour
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
+        // Normalize movement vector to handle diagonal movement.
+        moveInput.Normalize();
+
+        HandleAnimation();
+
         _myRigidbody.velocity = moveInput * moveSpeed;
 
         Vector3 mousePos = Input.mousePosition;
-        Vector3 playerPos = Camera.main.WorldToScreenPoint(transform.localPosition);
+        Vector3 playerPos = _mainCamera.WorldToScreenPoint(transform.localPosition);
 
         //  Flip the player to look the way the mouse if facing.
         if (mousePos.x < playerPos.x)
@@ -45,5 +54,17 @@ public class PlayerController : MonoBehaviour
         float angle = Mathf.Atan2(offset.y, offset.x) * Mathf.Rad2Deg;
 
         gunHand.rotation = Quaternion.Euler(0f, 0f, angle);
+    }
+
+    private void HandleAnimation()
+    {
+        if (moveInput != Vector2.zero)
+        {
+            _myAnimator.SetBool("isWalking", true);
+        }
+        else
+        {
+            _myAnimator.SetBool("isWalking", false);
+        }
     }
 }

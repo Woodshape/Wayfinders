@@ -28,6 +28,8 @@ public class PlayerController : MonoBehaviour
     public float timeBetweenShots = 1f;
     private float shotCounter;
 
+    private bool canMove = true;
+
     void Awake()
     {
         if (Instance == null)
@@ -48,6 +50,8 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!canMove) return;
+
         moveInput.x = Input.GetAxisRaw("Horizontal");
         moveInput.y = Input.GetAxisRaw("Vertical");
 
@@ -139,6 +143,14 @@ public class PlayerController : MonoBehaviour
         {
             _myAnimator.SetBool("isWalking", false);
         }
+    }
+
+    public void FreezePlayer()
+    {
+        canMove = false;
+        _myRigidbody.isKinematic = true;
+        _myRigidbody.velocity = Vector3.zero;
+        _myAnimator.SetBool("isWalking", false);
     }
 
     public bool CanDash()

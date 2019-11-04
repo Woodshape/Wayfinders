@@ -29,6 +29,12 @@ public class AudioManager : MonoBehaviour
         gameOverMusic.Play();
     }
 
+    public void PlayVictory()
+    {
+        levelMusic.Stop();
+        winMusic.Play();
+    }
+
     public void PlaySFX(int index)
     {
         SFX[index].Stop();

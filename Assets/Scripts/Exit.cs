@@ -5,13 +5,11 @@ using UnityEngine.SceneManagement;
 
 public class Exit : MonoBehaviour
 {
-    public string levelToLoad;
-
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene(levelToLoad);
+            StartCoroutine(LevelManager.Instance.NextLevel());
         }
     }
 }

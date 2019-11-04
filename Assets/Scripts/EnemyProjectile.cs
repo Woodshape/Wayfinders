@@ -13,7 +13,7 @@ public class EnemyProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        direction = PlayerController.instance.transform.position - transform.position;
+        direction = PlayerController.Instance.transform.position - transform.position;
         direction.Normalize();
     }
 
@@ -25,10 +25,16 @@ public class EnemyProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Destroy(gameObject);
+
         if (other.tag == "Player")
         {
-            PlayerHealthController.instance.DamagePlayer(1);
-            Destroy(gameObject);
+            PlayerHealthController.Instance.DamagePlayer(1);
+        }
+
+        if (other.GetComponent<Breakable>())
+        {
+            other.GetComponent<Breakable>().LowerBreakingThreshold();
         }
     }
 

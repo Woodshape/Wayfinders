@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public static PlayerController instance;
+    public static PlayerController Instance;
 
     public Transform gunHand;
     public float moveSpeed;
@@ -20,7 +20,6 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D _myRigidbody;
     private Animator _myAnimator;
-    private Camera _mainCamera;
 
     private Vector2 moveInput;
 
@@ -31,9 +30,9 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
     }
 
@@ -42,7 +41,6 @@ public class PlayerController : MonoBehaviour
     {
         _myRigidbody = GetComponent<Rigidbody2D>();
         _myAnimator = GetComponent<Animator>();
-        _mainCamera = Camera.main;
 
         activeMoveSpeed = moveSpeed;
     }
@@ -56,11 +54,7 @@ public class PlayerController : MonoBehaviour
         // Normalize movement vector to handle diagonal movement.
         moveInput.Normalize();
 
-        HandleAnimation();
-
         _myRigidbody.velocity = moveInput * activeMoveSpeed;
-
-        Counter();
 
         //TODO: implement reload mechanic - based on shot rythm?
         // maybe we only "use up" ammunition of we miss a beat?
@@ -70,17 +64,30 @@ public class PlayerController : MonoBehaviour
             {
                 Instantiate(projectileGO, projectilePoint.position, projectilePoint.rotation);
                 shotCounter = timeBetweenShots;
+
+                AudioManager.Instance.PlaySFX(12);
             }
         }
 
-        if (IsDashing())
+        if (Input.GetButtonDown("Jump"))
         {
-            activeMoveSpeed = dashSpeed;
-            dashCounter = dashLength;
-            dashCoolCounter = dashCooldown;
+            if (CanDash())
+            {
+                activeMoveSpeed = dashSpeed;
+                dashCounter = dashLength;
+                dashCoolCounter = dashCooldown;
 
-            PlayerHealthController.instance.MakeInvincible(dashLength);
+                _myAnimator.SetTrigger("toDash");
+
+                AudioManager.Instance.PlaySFX(8);
+
+                PlayerHealthController.Instance.MakeInvincible(dashLength);
+            }
         }
+
+        HandleAnimation();
+
+        Counter();
     }
 
     private void Counter()
@@ -104,7 +111,7 @@ public class PlayerController : MonoBehaviour
     private void HandleAnimation()
     {
         Vector3 mousePos = Input.mousePosition;
-        Vector3 playerPos = _mainCamera.WorldToScreenPoint(transform.localPosition);
+        Vector3 playerPos = CameraController.Instance._mainCamera.WorldToScreenPoint(transform.localPosition);
 
         // Rotate the gun hand.
         Vector2 offset = new Vector2(mousePos.x - playerPos.x, mousePos.y - playerPos.y);
@@ -132,16 +139,15 @@ public class PlayerController : MonoBehaviour
         {
             _myAnimator.SetBool("isWalking", false);
         }
+    }
 
-        //  At this point we know we are dashing.
-        if (IsDashing())
-        {
-            _myAnimator.SetTrigger("toDash");
-        }
+    public bool CanDash()
+    {
+        return dashCounter <= 0 && dashCoolCounter <= 0;
     }
 
     public bool IsDashing()
     {
-        return Input.GetButtonDown("Jump") && dashCounter <= 0 && dashCoolCounter <= 0;
+        return dashCounter > 0;
     }
 }

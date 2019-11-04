@@ -38,11 +38,11 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!_mySpriteRenderer.isVisible && !PlayerController.instance.gameObject.activeInHierarchy) return;
+        if (!_mySpriteRenderer.isVisible && !PlayerController.Instance.gameObject.activeInHierarchy) return;
 
         if (IsPlayerInRange())
         {
-            moveDirection = PlayerController.instance.transform.position - transform.position;
+            moveDirection = PlayerController.Instance.transform.position - transform.position;
         }
         else
         {
@@ -66,23 +66,25 @@ public class EnemyController : MonoBehaviour
             {
                 Instantiate(projectileGO, projectilePoint.position, projectilePoint.rotation);
                 fireCounter = fireRate;
+
+                AudioManager.Instance.PlaySFX(13);
             }
         }
     }
 
     private bool IsPlayerInRange()
     {
-        return Vector3.Distance(transform.position, PlayerController.instance.transform.position) <= chaseRadius;
+        return Vector3.Distance(transform.position, PlayerController.Instance.transform.position) <= chaseRadius;
     }
 
     private bool IsInFireRange()
     {
-        return Vector3.Distance(transform.position, PlayerController.instance.transform.position) <= fireDistance;
+        return Vector3.Distance(transform.position, PlayerController.Instance.transform.position) <= fireDistance;
     }
 
     private void HandleAnimation()
     {
-        if (transform.position.x < PlayerController.instance.transform.position.x)
+        if (transform.position.x < PlayerController.Instance.transform.position.x)
         {
             transform.localScale = new Vector3(-1f, 1f, 1f);
         }
@@ -107,12 +109,16 @@ public class EnemyController : MonoBehaviour
 
         Instantiate(hurtParticles, transform.position, transform.rotation);
 
+        AudioManager.Instance.PlaySFX(2);
+
         if (health <= 0)
         {
             int randomSplatter = Random.Range(0, deathSplatters.Length);
             int randomRotaion = Random.Range(0, 4);
             Instantiate(deathSplatters[randomSplatter], transform.position, Quaternion.Euler(0f, 0f, 90f * randomRotaion));
             Destroy(gameObject);
+
+            AudioManager.Instance.PlaySFX(1);
         }
     }
 }

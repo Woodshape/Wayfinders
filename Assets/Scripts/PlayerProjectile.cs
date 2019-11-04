@@ -26,14 +26,20 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.GetComponent<PlayerController>()) return;
-
         Instantiate(impactParticles, transform.position, transform.rotation);
+
+        AudioManager.Instance.PlaySFX(4);
+
         Destroy(gameObject);
 
         if (other.tag == "Enemy")
         {
             other.GetComponent<EnemyController>().TakeDamage(damage);
+        }
+
+        if (other.GetComponent<Breakable>())
+        {
+            other.GetComponent<Breakable>().LowerBreakingThreshold();
         }
     }
 

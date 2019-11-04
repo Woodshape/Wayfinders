@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 2179376227106907414}
   - component: {fileID: 2179376227106907413}
   - component: {fileID: 2179376227106907416}
-  m_Layer: 0
+  - component: {fileID: 3130481814718388491}
+  m_Layer: 13
   m_Name: Spikes
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -68,8 +69,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1611431981
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 443781331472107259, guid: 815f98a145a4ae14d897a7f431477ea9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -118,5 +119,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 475d42be6a5634a438c8b90d2e65f1b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3130481814718388491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2179376227106907412}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a345d70d13fc864a83eda5b334070fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

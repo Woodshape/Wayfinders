@@ -8,7 +8,7 @@ public class DamageSource : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            PlayerHealthController.instance.DamagePlayer(1);
+            PlayerHealthController.Instance.DamagePlayer(1);
         }
     }
 
@@ -16,7 +16,7 @@ public class DamageSource : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            PlayerHealthController.instance.DamagePlayer(1);
+            PlayerHealthController.Instance.DamagePlayer(1);
         }
     }
 
@@ -24,7 +24,7 @@ public class DamageSource : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerHealthController.instance.DamagePlayer(1);
+            PlayerHealthController.Instance.DamagePlayer(1);
         }
     }
 
@@ -32,7 +32,7 @@ public class DamageSource : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            PlayerHealthController.instance.DamagePlayer(1);
+            PlayerHealthController.Instance.DamagePlayer(1);
         }
     }
 }

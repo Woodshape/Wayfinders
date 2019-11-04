@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerHealthController : MonoBehaviour
 {
-    public static PlayerHealthController instance;
+    public static PlayerHealthController Instance;
 
     private int currentHealth;
     public int maxHealth;
@@ -19,16 +19,16 @@ public class PlayerHealthController : MonoBehaviour
 
     void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
-            instance = this;
+            Instance = this;
         }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        player = PlayerController.instance.gameObject;
+        player = PlayerController.Instance.gameObject;
         currentHealth = maxHealth;
 
         UIController.instance.healthSlider.maxValue = maxHealth;
@@ -63,10 +63,36 @@ public class PlayerHealthController : MonoBehaviour
         if (currentHealth <= 0)
         {
             UIController.instance.deathScreen.SetActive(true);
+            AudioManager.Instance.PlaySFX(8);
+            AudioManager.Instance.PlayGameOver();
             player.SetActive(false);
         }
 
+        AudioManager.Instance.PlaySFX(11);
+
         MakeInvincible(damageInvincibility);
+    }
+
+    public bool HealDamage(int amount)
+    {
+        int newHealth = currentHealth + amount;
+
+        if (currentHealth == maxHealth) return false;
+
+        AudioManager.Instance.PlaySFX(7);
+
+        if (newHealth > maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
+        else
+        {
+            currentHealth += amount;
+        }
+
+        UIUpdate();
+
+        return true;
     }
 
     public void MakeInvincible(float duration)

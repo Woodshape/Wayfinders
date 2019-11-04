@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 572774929}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Bullet Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -40,7 +40,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7663255976577711294}
   - component: {fileID: 7663255976577711295}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,9 +124,9 @@ GameObject:
   - component: {fileID: 7663255977324809377}
   - component: {fileID: 7663255977324809376}
   - component: {fileID: 7663255977324809383}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -200,9 +200,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gunHand: {fileID: 7663255978307283348}
   moveSpeed: 5
-  bulletGO: {fileID: 4392514066840201162, guid: a3791b0ae6974684983e07f7cc4d2871,
+  dashSpeed: 10
+  dashLength: 0.5
+  dashCooldown: 1
+  projectileGO: {fileID: 4392514066840201162, guid: a3791b0ae6974684983e07f7cc4d2871,
     type: 3}
-  bulletPoint: {fileID: 572774929}
+  projectilePoint: {fileID: 572774929}
+  timeBetweenShots: 1
 --- !u!95 &7663255977324809383
 Animator:
   serializedVersion: 3
@@ -232,7 +236,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7663255977774388722}
   - component: {fileID: 7663255977774388723}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +317,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7663255977939242057}
   - component: {fileID: 7663255977939242062}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Shadow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +398,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7663255978307283348}
   - component: {fileID: 7663255978307283349}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Gun Hand
   m_TagString: Untagged
   m_Icon: {fileID: 0}

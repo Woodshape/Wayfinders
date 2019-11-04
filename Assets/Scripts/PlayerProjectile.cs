@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerBullet : MonoBehaviour
+public class PlayerProjectile : MonoBehaviour
 {
+    public int damage = 50;
     public float speed = 10f;
 
     public GameObject impactParticles;
@@ -25,12 +26,15 @@ public class PlayerBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (!other.GetComponent<PlayerController>())
-        {
-            Instantiate(impactParticles, transform.position, transform.rotation);
-            Destroy(gameObject);
-        }
+        if (other.GetComponent<PlayerController>()) return;
 
+        Instantiate(impactParticles, transform.position, transform.rotation);
+        Destroy(gameObject);
+
+        if (other.tag == "Enemy")
+        {
+            other.GetComponent<EnemyController>().TakeDamage(damage);
+        }
     }
 
     private void OnBecameInvisible()

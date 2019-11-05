@@ -2,27 +2,24 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyController : MonoBehaviour
+public class Enemy : MonoBehaviour
 {
     public int health = 150;
 
     public float moveSpeed;
-    public float chaseRadius;
 
-    public bool rangedEnemy;
-    public float fireDistance;
-
-    public GameObject projectileGO;
-    public Transform projectilePoint;
+    public bool chasesPlayer;
+    public bool shouldRunAway;
+    public float aggroRadius;
 
     private Vector3 moveDirection;
 
-    private Rigidbody2D _myRigidbody;
-    private SpriteRenderer _mySpriteRenderer;
-    private Animator _myAnimator;
-
-    public float fireRate = 1f;
-    private float fireCounter;
+    [HideInInspector]
+    public Rigidbody2D _myRigidbody;
+    [HideInInspector]
+    public SpriteRenderer _mySpriteRenderer;
+    [HideInInspector]
+    public Animator _myAnimator;
 
     public GameObject hurtParticles;
     public GameObject[] deathSplatters;
@@ -36,50 +33,32 @@ public class EnemyController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    public virtual void Update()
     {
-        if (!_mySpriteRenderer.isVisible && !PlayerController.Instance.gameObject.activeInHierarchy) return;
+        //  Always make sure to deactivate enemy update loop if the enemy is not on screen
+        //  or if the player is inactive for any reason (maybe he is loading or switching scenes etc.)
+        if (!_mySpriteRenderer.isVisible || !PlayerController.Instance.gameObject.activeInHierarchy) return;
 
-        if (IsPlayerInRange())
+        moveDirection = Vector3.zero;
+
+        if (chasesPlayer && IsPlayerInRange())
         {
             moveDirection = PlayerController.Instance.transform.position - transform.position;
         }
-        else
+        else if (shouldRunAway && IsPlayerInRange())
         {
-            moveDirection = Vector3.zero;
+            moveDirection = transform.position - PlayerController.Instance.transform.position;
         }
 
         HandleAnimation();
 
         moveDirection.Normalize();
         _myRigidbody.velocity = moveDirection * moveSpeed;
-
-        Attack();
-    }
-
-    private void Attack()
-    {
-        if (rangedEnemy && IsInFireRange())
-        {
-            fireCounter -= Time.deltaTime;
-            if (fireCounter <= 0)
-            {
-                Instantiate(projectileGO, projectilePoint.position, projectilePoint.rotation);
-                fireCounter = fireRate;
-
-                AudioManager.Instance.PlaySFX(13);
-            }
-        }
     }
 
     private bool IsPlayerInRange()
     {
-        return Vector3.Distance(transform.position, PlayerController.Instance.transform.position) <= chaseRadius;
-    }
-
-    private bool IsInFireRange()
-    {
-        return Vector3.Distance(transform.position, PlayerController.Instance.transform.position) <= fireDistance;
+        return Vector3.Distance(transform.position, PlayerController.Instance.transform.position) <= aggroRadius;
     }
 
     private void HandleAnimation()

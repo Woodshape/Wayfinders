@@ -34,7 +34,7 @@ public class PlayerProjectile : MonoBehaviour
 
         if (other.tag == "Enemy")
         {
-            other.GetComponent<EnemyController>().TakeDamage(damage);
+            other.GetComponent<Enemy>().TakeDamage(damage);
         }
 
         if (other.GetComponent<Breakable>())

@@ -4,36 +4,19 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-    public bool closeWhenEntered, openWhenEnemiesCleared;
+    public bool closeWhenEntered;
 
     public GameObject[] doors;
 
-    public List<GameObject> enemies = new List<GameObject>();
-
     private bool roomActive;
 
-    void Update()
+    public void OpenDoors()
     {
-        if (roomActive && enemies.Count > 0)
+        foreach (GameObject door in doors)
         {
-            for (int i = 0; i < enemies.Count; i++)
-            {
-                if (enemies[i] == null)
-                {
-                    enemies.RemoveAt(i);
-                    i--;
-                }
-            }
-        }
+            door.SetActive(false);
 
-        if (openWhenEnemiesCleared && enemies.Count == 0)
-        {
-            foreach (GameObject door in doors)
-            {
-                door.SetActive(false);
-
-                closeWhenEntered = false;
-            }
+            closeWhenEntered = false;
         }
     }
 
@@ -61,5 +44,10 @@ public class Room : MonoBehaviour
         {
             roomActive = false;
         }
+    }
+
+    public bool IsActiveRoom()
+    {
+        return roomActive;
     }
 }

@@ -34,12 +34,34 @@ public class LevelGenerator : MonoBehaviour
 
     public LayoutRoomPrefabs layoutRooms;
 
+    public RoomCenter centerStart, centerEnd;
+    public RoomCenter[] roomCenters;
+
     // Start is called before the first frame update
     void Start()
     {
         //  Instantiate the starting room and color it.
         Instantiate(layoutRoom, generationPoint.transform.position, generationPoint.transform.rotation).GetComponent<SpriteRenderer>().color = startColor;
 
+        //  
+        PlaceRoomLayouts();
+
+        //
+        CreateRoomOutline(Vector3.zero);
+
+        foreach (GameObject layoutRoom in layoutRoomGOs)
+        {
+            CreateRoomOutline(layoutRoom.transform.position);
+        }
+
+        CreateRoomOutline(endRoom.transform.position);
+
+        //  
+        PopulateRoomCenters();
+    }
+
+    public void PlaceRoomLayouts()
+    {
         for (int i = 0; i < numOfRooms; i++)
         {
 
@@ -71,15 +93,44 @@ public class LevelGenerator : MonoBehaviour
                 endRoom.GetComponent<SpriteRenderer>().color = endColor;
             }
         }
+    }
 
-        CreateRoomOutline(Vector3.zero);
-
-        foreach (GameObject layoutRoom in layoutRoomGOs)
+    public void PopulateRoomCenters()
+    {
+        //  TODO: BETTER PROCEDURAL LEVEL GENERATION
+        //  For now, we want to pick a random room center and assign it to each room outline.
+        //  Plus, we want to make sure our room center knows which room it is in.
+        foreach (GameObject outline in generatedRoomOutlines)
         {
-            CreateRoomOutline(layoutRoom.transform.position);
-        }
+            bool generateCenter = true;
 
-        CreateRoomOutline(endRoom.transform.position);
+            //  Assign the start room' center first (which we know must be at Vector3.zero).
+            if (outline.transform.position == Vector3.zero)
+            {
+                RoomCenter start = Instantiate(centerStart, outline.transform.position, outline.transform.rotation);
+                start._myRoom = outline.GetComponent<Room>();
+
+                generateCenter = false;
+            }
+
+            //  Assign the end room' center second (which we know must be at Vector3.zero).
+            if (outline.transform.position == endRoom.transform.position)
+            {
+                RoomCenter end = Instantiate(centerEnd, outline.transform.position, outline.transform.rotation);
+                end._myRoom = outline.GetComponent<Room>();
+
+                generateCenter = false;
+            }
+
+            //  Finally, if we are allowed to generate a center for this room, we simply pick one random center.
+            if (generateCenter)
+            {
+                int randomCenterRoom = Random.Range(0, roomCenters.Length);
+
+                RoomCenter center = Instantiate(roomCenters[randomCenterRoom], outline.transform.position, outline.transform.rotation);
+                center._myRoom = outline.GetComponent<Room>();
+            }
+        }
     }
 
     private void CreateRoomOutline(Vector3 roomPosition)
@@ -174,10 +225,12 @@ public class LevelGenerator : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.R))
+#if UNITY_EDITOR
+        if (Input.GetKey(KeyCode.N))
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
+#endif
     }
 
     public void MoveGenerationPoint(Direction dir)

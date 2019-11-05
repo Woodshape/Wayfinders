@@ -152,7 +152,6 @@ MonoBehaviour:
   direction: 0
   layoutRoom: {fileID: 2022897549373514260, guid: 7563313b17e525b41a4d6759b0062fc5,
     type: 3}
-  endRoom: {fileID: 0}
   startColor: {r: 0.21226418, g: 0.8000502, b: 1, a: 1}
   endColor: {r: 0.735849, g: 0.13523829, b: 0, a: 1}
   numOfRooms: 10
@@ -162,6 +161,34 @@ MonoBehaviour:
   roomLayerMask:
     serializedVersion: 2
     m_Bits: 32768
+  layoutRooms:
+    sUp: {fileID: 413344449930915700, guid: fabeb548a9494004cbb851fe473fe447, type: 3}
+    sRight: {fileID: 6869883091213978906, guid: 5cd7acf3ed22075499163b1d72f80563,
+      type: 3}
+    sDown: {fileID: 443385681147895464, guid: 5ee6b6815d6429a4ebadc716bc4a789d, type: 3}
+    sLeft: {fileID: 1471559710296067924, guid: 8260856aeae98844996558981970e02c, type: 3}
+    dUpDown: {fileID: 1604575382302116700, guid: 0bd2eb99c9146324f84b9c04911336f4,
+      type: 3}
+    dLeftRight: {fileID: 8669207197096969645, guid: 2b42975c6748bc045a04ec7ecd9bd0e3,
+      type: 3}
+    dUpLeft: {fileID: 2871475778682668782, guid: 08619b9ef7b388d4d9a2ac74ef24c377,
+      type: 3}
+    dLeftDown: {fileID: 8765231676588996620, guid: 92ea94424f852e34ea2e7a89f8f25768,
+      type: 3}
+    dDownRight: {fileID: 5716155781542291128, guid: 94b8a9dd83dac694b9415e4089c999c9,
+      type: 3}
+    dRightUp: {fileID: 7799328527857020165, guid: ca3c19431a423b245bdd6dcdb10d2c74,
+      type: 3}
+    tUpRightDown: {fileID: 5475692352600305684, guid: 8b06e6b292e76d1489fa7168c6017a29,
+      type: 3}
+    tRightDownLeft: {fileID: 3041403666319226904, guid: d4d1ce1ab1621fe46a6d5c06023c7a25,
+      type: 3}
+    tDownLeftUp: {fileID: 2065483202300652373, guid: 2ba3b72bc318e254e944ed4b93723c92,
+      type: 3}
+    tLeftUpRight: {fileID: 6533413424509211609, guid: 56e41ec76a58d924eae12a7938fb2bb6,
+      type: 3}
+    fourway: {fileID: 8906741071722931412, guid: 2487c3a14d098604687f6879a1ee8df2,
+      type: 3}
 --- !u!4 &579204535
 Transform:
   m_ObjectHideFlags: 0

@@ -15,18 +15,12 @@ public class PlayerController : MonoBehaviour
     private float dashCounter;
     private float dashCoolCounter;
 
-    public GameObject projectileGO;
-    public Transform projectilePoint;
-
     private Rigidbody2D _myRigidbody;
     private Animator _myAnimator;
 
     private Vector2 moveInput;
 
     private float activeMoveSpeed;
-
-    public float timeBetweenShots = 1f;
-    private float shotCounter;
 
     private bool canMove = true;
 
@@ -60,19 +54,6 @@ public class PlayerController : MonoBehaviour
 
         _myRigidbody.velocity = moveInput * activeMoveSpeed;
 
-        //TODO: implement reload mechanic - based on shot rythm?
-        // maybe we only "use up" ammunition of we miss a beat?
-        if (Input.GetButtonDown("Fire1") || Input.GetButton("Fire1"))
-        {
-            if (shotCounter <= 0)
-            {
-                Instantiate(projectileGO, projectilePoint.position, projectilePoint.rotation);
-                shotCounter = timeBetweenShots;
-
-                AudioManager.Instance.PlaySFX(12);
-            }
-        }
-
         if (Input.GetButtonDown("Jump"))
         {
             if (CanDash())
@@ -96,9 +77,6 @@ public class PlayerController : MonoBehaviour
 
     private void Counter()
     {
-        if (shotCounter > 0)
-            shotCounter -= Time.deltaTime;
-
         if (dashCounter > 0)
         {
             dashCounter -= Time.deltaTime;

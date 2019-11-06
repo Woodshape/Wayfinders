@@ -14,10 +14,13 @@ public class SummonerEnemy : Enemy
     {
         base.Update();
 
-        if (summonCounter > 0)
-            summonCounter -= Time.deltaTime;
+        if (!_mySpriteRenderer.isVisible || !PlayerController.Instance.gameObject.activeInHierarchy) return;
 
-        if (summonCounter <= 0)
+        if (summonCounter > 0)
+        {
+            summonCounter -= Time.deltaTime;
+        }
+        else
         {
             _myAnimator.SetTrigger("tSummon");
 

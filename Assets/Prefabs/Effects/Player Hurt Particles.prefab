@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3049613618861773769}
   - component: {fileID: 3049613618861773768}
   - component: {fileID: 3049613618861773771}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Player Hurt Particles
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3790,7 +3790,7 @@ ParticleSystem:
     radiusScale: 1
     collidesWith:
       serializedVersion: 2
-      m_Bits: 4294967295
+      m_Bits: 196407
     maxCollisionShapes: 256
     quality: 0
     voxelSize: 0.5

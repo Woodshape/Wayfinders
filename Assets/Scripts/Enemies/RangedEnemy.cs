@@ -20,8 +20,11 @@ public class RangedEnemy : Enemy
 
         if (IsInFireRange())
         {
-            fireCounter -= Time.deltaTime;
-            if (fireCounter <= 0)
+            if (fireCounter > 0)
+            {
+                fireCounter -= Time.deltaTime;
+            }
+            else
             {
                 Instantiate(projectileGO, projectilePoint.position, projectilePoint.rotation);
                 fireCounter = fireRate;

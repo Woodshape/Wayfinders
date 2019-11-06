@@ -18,8 +18,11 @@ public class MeleeEnemy : Enemy
         {
             _myRigidbody.velocity = Vector3.zero;
 
-            attackCounter -= Time.deltaTime;
-            if (attackCounter <= 0)
+            if (attackCounter > 0)
+            {
+                attackCounter -= Time.deltaTime;
+            }
+            else
             {
                 attackCounter = attackSpeed;
 

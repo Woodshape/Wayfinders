@@ -31,7 +31,7 @@ public class PlayerHealthController : MonoBehaviour
         player = PlayerController.Instance.gameObject;
         currentHealth = maxHealth;
 
-        UIController.instance.healthSlider.maxValue = maxHealth;
+        UIController.Instance.healthSlider.maxValue = maxHealth;
         UIUpdate();
     }
 
@@ -62,7 +62,7 @@ public class PlayerHealthController : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-            UIController.instance.deathScreen.SetActive(true);
+            UIController.Instance.deathScreen.SetActive(true);
             AudioManager.Instance.PlaySFX(8);
             AudioManager.Instance.PlayGameOver();
             player.SetActive(false);
@@ -103,7 +103,7 @@ public class PlayerHealthController : MonoBehaviour
 
     private void UIUpdate()
     {
-        UIController.instance.healthSlider.value = currentHealth;
-        UIController.instance.healthText.text = currentHealth.ToString() + " / " + maxHealth.ToString();
+        UIController.Instance.healthSlider.value = currentHealth;
+        UIController.Instance.healthText.text = currentHealth.ToString() + " / " + maxHealth.ToString();
     }
 }

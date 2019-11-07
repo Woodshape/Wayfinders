@@ -42,10 +42,10 @@ public class Conductor : MonoBehaviour
 
     private float tolerance = 0.1f;
 
-    public ScriptableObject beat;
+    public Beat beat;
 
     public List<GameObject> notes = new List<GameObject>();
-    private List<GameObject> spawnedNotes = new List<GameObject>();
+    public List<GameObject> spawnedNotes = new List<GameObject>();
     public GameObject noteSpawnLocation;
     public GameObject noteTarget;
 
@@ -95,29 +95,53 @@ public class Conductor : MonoBehaviour
         loopPositionInAnalog = loopPositionInBeats / beatsPerLoop;
 
         LoopNotes();
+
+        // CheckForBeat();
     }
 
     void LoopNotes()
     {
-        if (nextIndex < notes.Count && notes[nextIndex].GetComponent<Note>().beat < songPositionInBeats + beatsShownInAdvance)
+        if (nextIndex < beat.notes.Count && beat.notes[nextIndex].GetComponent<Note>().beat < songPositionInBeats + beatsShownInAdvance)
         {
-            // spawnedNotes.Add(Instantiate(notes[nextIndex], noteSpawnLocation.transform.position, noteSpawnLocation.transform.rotation));
-            // Instantiate(notes[nextIndex], noteSpawnLocation.transform.position, noteSpawnLocation.transform.rotation);
+            spawnedNotes.Add(Instantiate(beat.notes[nextIndex], noteSpawnLocation.transform.position, noteSpawnLocation.transform.rotation));
+            // Instantiate(beat.notes[nextIndex], noteSpawnLocation.transform.position, noteSpawnLocation.transform.rotation);
 
-            notes[nextIndex].transform.SetParent(FindObjectOfType<Canvas>().transform, true);
-            notes[nextIndex].SetActive(true);
+            spawnedNotes[nextIndex].transform.SetParent(FindObjectOfType<Canvas>().transform, true);
+            spawnedNotes[nextIndex].SetActive(true);
 
             nextIndex++;
 
         }
 
-        for (int i = 0; i < notes.Count; i++)
+        for (int i = 0; i < spawnedNotes.Count; i++)
         {
-            notes[i].GetComponent<RectTransform>().position = Vector3.Lerp(noteSpawnLocation.transform.position,
+            spawnedNotes[i].GetComponent<RectTransform>().position = Vector3.Lerp(noteSpawnLocation.transform.position,
             noteTarget.transform.position,
-            (beatsShownInAdvance - (notes[i].GetComponent<Note>().beat - loopPositionInBeats)) / beatsShownInAdvance);
+            (beatsShownInAdvance - (spawnedNotes[i].GetComponent<Note>().beat - loopPositionInBeats)) / beatsShownInAdvance);
         }
     }
+
+    // void CheckForBeat()
+    // {
+    //     int hitCount = 0;
+
+    //     for (int i = 0; i < spawnedNotes.Count; i++)
+    //     {
+    //         if (spawnedNotes[i].GetComponent<Note>().IsHittable())
+    //         {
+    //             hitCount++;
+    //         }
+    //     }
+
+    //     if (hitCount > 0)
+    //     {
+    //         noteHit = true;
+    //     }
+    //     else
+    //     {
+    //         noteHit = false;
+    //     }
+    // }
 
     public bool IsOnBeat()
     {

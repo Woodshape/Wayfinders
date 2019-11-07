@@ -9,7 +9,7 @@ public class Note : MonoBehaviour
 
     private bool isHittable = false;
 
-    private float hitDelay = 0.25f;
+    private float hitDelay = .25f;
 
     private void OnTriggerEnter2D(Collider2D other)
     {

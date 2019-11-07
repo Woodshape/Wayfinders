@@ -7,7 +7,11 @@ public class Weapon : MonoBehaviour
     public ShotType shotType;
 
     public int numberOfProjectiles;
-    public int ammunition;
+    private int ammunition;
+    public int maximumAmmunition;
+
+    public float reloadTime;
+    private float reloadCounter;
 
     public float timeBetweenShots = 1f;
     private float shotCounter;
@@ -18,6 +22,13 @@ public class Weapon : MonoBehaviour
     public GameObject projectileGO;
     public Transform projectilePoint;
 
+    private void Start()
+    {
+        ammunition = maximumAmmunition;
+
+        UpdateAmmoCounter();
+    }
+
     void Update()
     {
         if (shotCounter > 0)
@@ -26,51 +37,79 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            //TODO: implement reload mechanic - based on shot rythm?
-            // maybe we only "use up" ammunition of we miss a beat?
             if (Input.GetButtonDown("Fire1"))
             {
-                if (Conductor.Instance.IsOnBeat())
-                {
-                    FireProjectile();
-                }
-                // else
-                // {
-                //     if (ammunition > 0)
-                //     {
-                //         FireProjectile();
-                //         ammunition -= numberOfProjectiles;
-                //     }
-                // }
-
                 shotCounter = timeBetweenShots;
+
+                foreach (GameObject note in Conductor.Instance.spawnedNotes)
+                {
+                    if (note.GetComponent<Note>().IsHittable())
+                    {
+                        FireProjectile(false);
+                        return;
+                    }
+                }
+
+                FireProjectile(true);
+            }
+        }
+
+        if (reloadCounter > 0)
+        {
+            reloadCounter -= Time.deltaTime;
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.R) && ammunition < maximumAmmunition)
+            {
+                StartCoroutine(ReloadWeapon());
             }
         }
     }
 
-    void FireProjectile()
+    void FireProjectile(bool usesAmmo)
     {
-        switch (shotType)
+        if (ammunition > 0 || !usesAmmo)
         {
-            case ShotType.SingleFire:
-                SingleShot();
-                break;
-            case ShotType.Burst:
-                StartCoroutine(BurstShot());
-                break;
-            case ShotType.Spread:
-                SpreadShot();
-                break;
-            default:
-                SingleShot();
-                break;
+            if (usesAmmo)
+            {
+                ammunition -= numberOfProjectiles;
+                UpdateAmmoCounter();
+            }
+
+            switch (shotType)
+            {
+                case ShotType.SingleFire:
+                    SingleShot();
+                    break;
+                case ShotType.Burst:
+                    StartCoroutine(BurstShot());
+                    break;
+                case ShotType.Spread:
+                    SpreadShot();
+                    break;
+                default:
+                    SingleShot();
+                    break;
+            }
         }
+    }
+
+    public IEnumerator ReloadWeapon()
+    {
+        //  Animation stuff
+        yield return new WaitForSeconds(reloadTime);
+
+        ammunition = maximumAmmunition;
+        reloadCounter = reloadTime;
+
+        UpdateAmmoCounter();
     }
 
     void SingleShot()
     {
         Instantiate(projectileGO, projectilePoint.position, projectilePoint.rotation);
-        AudioManager.Instance.PlaySFX(12);
+        // AudioManager.Instance.PlaySFX(12);
     }
 
     IEnumerator BurstShot()
@@ -93,7 +132,12 @@ public class Weapon : MonoBehaviour
             bullet.transform.Rotate(0, 0, Random.Range(-spreadAngle, spreadAngle));
         }
 
-        AudioManager.Instance.PlaySFX(12);
+        // AudioManager.Instance.PlaySFX(12);
+    }
+
+    void UpdateAmmoCounter()
+    {
+        UIController.Instance.ammoText.text = ammunition.ToString();
     }
 }
 

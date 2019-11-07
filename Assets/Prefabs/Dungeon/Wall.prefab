@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7879503151562314271}
   - component: {fileID: 8912547586874875372}
   m_Layer: 17
-  m_Name: Dungeon 1 Tiles_1
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -67,10 +67,10 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -1611431981
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 9135993811521583247, guid: fffd7cf32ae20e84cba373590dd03da4,
+  m_Sprite: {fileID: -4709605994077762339, guid: fffd7cf32ae20e84cba373590dd03da4,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -106,5 +106,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.75, y: 0.75}
+  m_Size: {x: 0.66, y: 0.66}
   m_EdgeRadius: 0

@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     public float dashLength;
     public float dashCooldown;
 
+    public Beater activeBeater;
+
     private float dashCounter;
     private float dashCoolCounter;
 

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2082723756834780756}
   - component: {fileID: 2082723756834780760}
   - component: {fileID: 2082723756834780763}
+  - component: {fileID: -4118084221795919878}
   m_Layer: 14
   m_Name: Big Health Pickup
   m_TagString: Untagged
@@ -121,7 +122,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c91e67cbab9ea348932b3db6033c1bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 3
+  healAmount: 5
 --- !u!114 &2082723756834780763
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,5 +133,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a345d70d13fc864a83eda5b334070fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-4118084221795919878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2082723756834780767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e3489c8c6b5094aa76b9ddbf65c91a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

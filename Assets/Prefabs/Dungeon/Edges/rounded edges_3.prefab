@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1741345629360583508}
   - component: {fileID: 1741345629360583509}
-  m_Layer: 0
+  m_Layer: 17
   m_Name: rounded edges_3
   m_TagString: Untagged
   m_Icon: {fileID: 0}

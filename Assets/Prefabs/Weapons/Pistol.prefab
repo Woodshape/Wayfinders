@@ -96,7 +96,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeBetweenShots: 0.5
-  projectileGO: {fileID: 4392514066840201162, guid: a3791b0ae6974684983e07f7cc4d2871,
+  projectileGO: {fileID: 2588577155942739167, guid: 7ae420b5d1c65d7428cdb79723fe0035,
     type: 3}
   projectilePoint: {fileID: 4566131727182683955}
 --- !u!1 &8782155374883438183

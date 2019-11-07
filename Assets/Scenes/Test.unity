@@ -6071,35 +6071,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Skeleton (2)
       objectReference: {fileID: 0}
-    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
-        type: 3}
-      propertyPath: deathSplatters.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
-        type: 3}
-      propertyPath: deathSplatters.Array.data[0]
-      value: 
-      objectReference: {fileID: 5842415596808009600, guid: e2f7a371641aa944887159181e7740bb,
-        type: 3}
-    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
-        type: 3}
-      propertyPath: deathSplatters.Array.data[1]
-      value: 
-      objectReference: {fileID: 1034738677534637237, guid: d8921e1b56c108e45b0c850b197752da,
-        type: 3}
-    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
-        type: 3}
-      propertyPath: deathSplatters.Array.data[2]
-      value: 
-      objectReference: {fileID: 3144163648144438689, guid: 33a5fd706ce2b3742abbe8deb07b3ace,
-        type: 3}
-    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
-        type: 3}
-      propertyPath: deathSplatters.Array.data[3]
-      value: 
-      objectReference: {fileID: 1795158703662102938, guid: 88729ba413baa404fa4306bd4216a97f,
-        type: 3}
     - target: {fileID: 1162083037307987027, guid: ae72a501c8aac894abc0f5a525ce1cb9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -6155,6 +6126,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: deathSplatters.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: deathSplatters.Array.data[0]
+      value: 
+      objectReference: {fileID: 5842415596808009600, guid: e2f7a371641aa944887159181e7740bb,
+        type: 3}
+    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: deathSplatters.Array.data[1]
+      value: 
+      objectReference: {fileID: 1034738677534637237, guid: d8921e1b56c108e45b0c850b197752da,
+        type: 3}
+    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: deathSplatters.Array.data[2]
+      value: 
+      objectReference: {fileID: 3144163648144438689, guid: 33a5fd706ce2b3742abbe8deb07b3ace,
+        type: 3}
+    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: deathSplatters.Array.data[3]
+      value: 
+      objectReference: {fileID: 1795158703662102938, guid: 88729ba413baa404fa4306bd4216a97f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae72a501c8aac894abc0f5a525ce1cb9, type: 3}
 --- !u!1 &1749874334
@@ -6927,35 +6927,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Skeleton (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
-        type: 3}
-      propertyPath: deathSplatters.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
-        type: 3}
-      propertyPath: deathSplatters.Array.data[0]
-      value: 
-      objectReference: {fileID: 5842415596808009600, guid: e2f7a371641aa944887159181e7740bb,
-        type: 3}
-    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
-        type: 3}
-      propertyPath: deathSplatters.Array.data[1]
-      value: 
-      objectReference: {fileID: 1034738677534637237, guid: d8921e1b56c108e45b0c850b197752da,
-        type: 3}
-    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
-        type: 3}
-      propertyPath: deathSplatters.Array.data[2]
-      value: 
-      objectReference: {fileID: 3144163648144438689, guid: 33a5fd706ce2b3742abbe8deb07b3ace,
-        type: 3}
-    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
-        type: 3}
-      propertyPath: deathSplatters.Array.data[3]
-      value: 
-      objectReference: {fileID: 1795158703662102938, guid: 88729ba413baa404fa4306bd4216a97f,
-        type: 3}
     - target: {fileID: 1162083037307987027, guid: ae72a501c8aac894abc0f5a525ce1cb9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7011,6 +6982,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: deathSplatters.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: deathSplatters.Array.data[0]
+      value: 
+      objectReference: {fileID: 5842415596808009600, guid: e2f7a371641aa944887159181e7740bb,
+        type: 3}
+    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: deathSplatters.Array.data[1]
+      value: 
+      objectReference: {fileID: 1034738677534637237, guid: d8921e1b56c108e45b0c850b197752da,
+        type: 3}
+    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: deathSplatters.Array.data[2]
+      value: 
+      objectReference: {fileID: 3144163648144438689, guid: 33a5fd706ce2b3742abbe8deb07b3ace,
+        type: 3}
+    - target: {fileID: 1162083037307987038, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: deathSplatters.Array.data[3]
+      value: 
+      objectReference: {fileID: 1795158703662102938, guid: 88729ba413baa404fa4306bd4216a97f,
+        type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ae72a501c8aac894abc0f5a525ce1cb9, type: 3}
 --- !u!1 &2130789706
@@ -7307,6 +7307,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy Skeleton
       objectReference: {fileID: 0}
+    - target: {fileID: 1162083037307987026, guid: ae72a501c8aac894abc0f5a525ce1cb9,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1162083037307987027, guid: ae72a501c8aac894abc0f5a525ce1cb9,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -7381,6 +7386,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy Coward
+      objectReference: {fileID: 0}
+    - target: {fileID: 136250757851745644, guid: 374bf89e4fb8c8b46a63f1e27782db56,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 136250757851745645, guid: 374bf89e4fb8c8b46a63f1e27782db56,
         type: 3}
@@ -8065,6 +8075,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Enemy Ooze
+      objectReference: {fileID: 0}
+    - target: {fileID: 3002932420959479359, guid: d5c0f2d7fb066e142b98372e21476ccf,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3002932420959479358, guid: d5c0f2d7fb066e142b98372e21476ccf,
         type: 3}

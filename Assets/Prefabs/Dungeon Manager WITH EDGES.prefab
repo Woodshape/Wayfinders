@@ -1,0 +1,86 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7441322809320441305
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7441322809320441307}
+  - component: {fileID: 7441322809320441304}
+  m_Layer: 0
+  m_Name: Dungeon Manager WITH EDGES
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7441322809320441307
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441322809320441305}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.117827, y: 4.481906, z: -3.5078125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7441322809320441304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7441322809320441305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5362a8894102597459b7027f1a4f3cf3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  totalFloorCount: 500
+  itemSpawnProbability: 5
+  enemySpawnProbability: 5
+  windingHallProbability: 20
+  roundedEdges: 1
+  dungeonType: 0
+  floorPrefab: {fileID: 7358028248295777738, guid: 42a33a42554e5614390893fb28194063,
+    type: 3}
+  wallPrefab: {fileID: 5770079064120237853, guid: fb06ddf97b1ad6941904afd429942936,
+    type: 3}
+  tilePrefab: {fileID: 5355027711968643883, guid: efa54200e6b111643af477c180c569f7,
+    type: 3}
+  exitPrefab: {fileID: 4256731965861659800, guid: 45698d56cdfbf6f4eabbc2057d465ab2,
+    type: 3}
+  randomItems:
+  - {fileID: 8597556302559275534, guid: b98c81d0c4480f9438dfc89976f9a7d5, type: 3}
+  randomEnemies:
+  - {fileID: 1162083037307987026, guid: ae72a501c8aac894abc0f5a525ce1cb9, type: 3}
+  - {fileID: 136250757851745644, guid: 374bf89e4fb8c8b46a63f1e27782db56, type: 3}
+  - {fileID: 5060871850546655511, guid: 6ce9472ab6855e04d8eb704ead386360, type: 3}
+  wallRoundedEdges:
+  - {fileID: 2210966534546593284, guid: 0a68a60492497ba40869749ac8214827, type: 3}
+  - {fileID: 1449834666508697884, guid: 07aac33ea4a8713499b53c607bbc8c5e, type: 3}
+  - {fileID: 6869140485245218588, guid: 5e56be4fd0b09314aadfa150cf2483f3, type: 3}
+  - {fileID: 1741345629360583510, guid: d73c973a6c0deb944a53071117978808, type: 3}
+  - {fileID: 7757854058462596847, guid: fef04b8788f029845b4b524f1f1246c4, type: 3}
+  - {fileID: 9147246864088145280, guid: 78659c164b29d7c49a20be89b36e592e, type: 3}
+  - {fileID: 3374451777166741284, guid: 03bb58a9d7d755f4eb028ef5a0595855, type: 3}
+  - {fileID: 6564338184480042530, guid: 2920e94da45eb314f85e7a40d4ddd478, type: 3}
+  - {fileID: 6852736138101169326, guid: fdff6b4d54464e04a992d1a4e8a7bb94, type: 3}
+  - {fileID: 24232822158393443, guid: cbfe10daa096be54c8f7dbc9fa668eef, type: 3}
+  - {fileID: 8911149659696594945, guid: 5dddfcda0bc0c2246ab4913f5f54e87c, type: 3}
+  - {fileID: 3379717493056141277, guid: dc80056fdbf9a6a4ca1e662a8d8ada96, type: 3}
+  - {fileID: 3216295441762337722, guid: f66a909665aa8464fad50078b822e780, type: 3}
+  - {fileID: 2863806396280342326, guid: 8776e48a852979d4885383bbfe6a5643, type: 3}
+  - {fileID: 8247816099468446399, guid: e2d09f28ed27b8e4baa6cdbdf5ff83d2, type: 3}
+  - {fileID: 959906139263466411, guid: d0b5bc6ebc5b29e4fbf5f8adaed618d4, type: 3}
+  minX: 0
+  maxX: 0
+  minY: 0
+  maxY: 0

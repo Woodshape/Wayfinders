@@ -48,6 +48,7 @@ public class Conductor : MonoBehaviour
     public List<GameObject> spawnedNotes = new List<GameObject>();
     public GameObject noteSpawnLocation;
     public GameObject noteTarget;
+    public Canvas beatCanvas;
 
     public int beatsShownInAdvance = 2;
 
@@ -106,7 +107,7 @@ public class Conductor : MonoBehaviour
             spawnedNotes.Add(Instantiate(beat.notes[nextIndex], noteSpawnLocation.transform.position, noteSpawnLocation.transform.rotation));
             // Instantiate(beat.notes[nextIndex], noteSpawnLocation.transform.position, noteSpawnLocation.transform.rotation);
 
-            spawnedNotes[nextIndex].transform.SetParent(FindObjectOfType<Canvas>().transform, true);
+            spawnedNotes[nextIndex].transform.SetParent(beatCanvas.transform, true);
             spawnedNotes[nextIndex].SetActive(true);
 
             nextIndex++;

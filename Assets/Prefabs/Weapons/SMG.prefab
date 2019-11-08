@@ -95,6 +95,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6380dc2bb8ebc4289b0fed7dd72b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponName: SMG
   shotType: 1
   damageModifier: 0.5
   numberOfProjectiles: 5

@@ -7,7 +7,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance;
 
     public List<Weapon> weapons = new List<Weapon>();
-    private int currentWeapon;
+    private Weapon currentWeapon;
 
     public Transform gunHand;
     public float moveSpeed;
@@ -42,6 +42,8 @@ public class PlayerController : MonoBehaviour
         _myAnimator = GetComponent<Animator>();
 
         activeMoveSpeed = moveSpeed;
+
+        currentWeapon = weapons[0];
     }
 
     // Update is called once per frame
@@ -73,15 +75,41 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-        // if (Input.GetKeyDown(KeyCode.R) && weapons[currentWeapon].CanReload())
-        // {
-        //     _myAnimator.SetBool("isReloading", true);
-        //     StartCoroutine(weapons[currentWeapon].ReloadWeapon());
-        // }
-
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            SwitchWeapon();
+            int index = 0;
+
+            for (int i = 0; i < weapons.Count; i++)
+            {
+                if (weapons[i] == currentWeapon)
+                {
+                    index = i + 1;
+                    if (index >= weapons.Count) index = 0;
+                }
+            }
+
+            SwitchWeapon(weapons[index]);
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            if (weapons.Count >= 0)
+                SwitchWeapon(weapons[0]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            if (weapons.Count >= 1)
+                SwitchWeapon(weapons[1]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            if (weapons.Count >= 2)
+                SwitchWeapon(weapons[2]);
+        }
+        if (Input.GetKeyDown(KeyCode.Alpha4))
+        {
+            if (weapons.Count >= 3)
+                SwitchWeapon(weapons[3]);
         }
 
         HandleAnimation();
@@ -137,19 +165,19 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void SwitchWeapon()
+    public void SwitchWeapon(Weapon weaponToSwitchTo)
     {
         if (weapons.Count > 0)
         {
-            currentWeapon++;
-            if (currentWeapon >= weapons.Count) currentWeapon = 0;
-
             foreach (Weapon weapon in weapons)
             {
                 weapon.gameObject.SetActive(false);
             }
 
-            weapons[currentWeapon].ShowWeapon();
+            currentWeapon = weaponToSwitchTo;
+            currentWeapon.ShowWeapon();
+
+            _myAnimator.SetBool("isReloading", false);
         }
         else
         {
@@ -163,7 +191,7 @@ public class PlayerController : MonoBehaviour
 
         foreach (Weapon availiableWeapon in weapons)
         {
-            if (availiableWeapon == weaponToPickup)
+            if (availiableWeapon.weaponName == weaponToPickup.weaponName)
             {
                 hasSameWeapon = true;
             }
@@ -179,7 +207,7 @@ public class PlayerController : MonoBehaviour
 
             weapons.Add(weapon);
 
-            SwitchWeapon();
+            SwitchWeapon(weapon);
 
             return true;
         }

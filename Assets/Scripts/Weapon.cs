@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
+    public string weaponName = "";
     public ShotType shotType;
 
     public float damageModifier = 1f;

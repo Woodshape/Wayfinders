@@ -125,7 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc6380dc2bb8ebc4289b0fed7dd72b2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponName: Shotgun
   shotType: 2
+  damageModifier: 1
   numberOfProjectiles: 3
   maximumAmmunition: 12
   reloadTime: 1.5

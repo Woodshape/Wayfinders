@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
     public ShotType shotType;
+
+    public float damageModifier = 1f;
 
     public int numberOfProjectiles;
     private int ammunition;
@@ -21,10 +24,13 @@ public class Weapon : MonoBehaviour
 
     public GameObject projectileGO;
     public Transform projectilePoint;
+    public Sprite weaponHUDImage;
 
     private void Start()
     {
         ammunition = maximumAmmunition;
+
+        UpdateWeaponHUD();
 
         UpdateAmmoCounter();
     }
@@ -37,7 +43,7 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            if (Input.GetButtonDown("Fire1"))
+            if (Input.GetButtonDown("Fire1") && !PlayerController.Instance.IsDashing())
             {
                 shotCounter = timeBetweenShots;
 
@@ -60,7 +66,7 @@ public class Weapon : MonoBehaviour
         }
         else
         {
-            if (Input.GetKeyDown(KeyCode.R) && ammunition < maximumAmmunition)
+            if (Input.GetKeyDown(KeyCode.R) && CanReload() && !PlayerController.Instance.IsDashing())
             {
                 StartCoroutine(ReloadWeapon());
             }
@@ -97,8 +103,11 @@ public class Weapon : MonoBehaviour
 
     public IEnumerator ReloadWeapon()
     {
-        //  Animation stuff
+        PlayerController.Instance.GetMyAnimator().SetBool("isReloading", true);
+
         yield return new WaitForSeconds(reloadTime);
+
+        PlayerController.Instance.GetMyAnimator().SetBool("isReloading", false);
 
         ammunition = maximumAmmunition;
         reloadCounter = reloadTime;
@@ -108,7 +117,7 @@ public class Weapon : MonoBehaviour
 
     void SingleShot()
     {
-        Instantiate(projectileGO, projectilePoint.position, projectilePoint.rotation);
+        SpawnProjectile();
         // AudioManager.Instance.PlaySFX(12);
     }
 
@@ -116,7 +125,7 @@ public class Weapon : MonoBehaviour
     {
         for (int i = 0; i < numberOfProjectiles; i++)
         {
-            Instantiate(projectileGO, projectilePoint.position, projectilePoint.rotation);
+            SpawnProjectile();
             AudioManager.Instance.PlaySFX(12);
             yield return new WaitForSeconds(burstDelay);
         }
@@ -126,7 +135,7 @@ public class Weapon : MonoBehaviour
     {
         for (int i = 0; i < numberOfProjectiles; i++)
         {
-            GameObject bullet = Instantiate(projectileGO, projectilePoint.position, projectilePoint.rotation);
+            GameObject bullet = SpawnProjectile();
 
             // Apply stray
             bullet.transform.Rotate(0, 0, Random.Range(-spreadAngle, spreadAngle));
@@ -135,9 +144,37 @@ public class Weapon : MonoBehaviour
         // AudioManager.Instance.PlaySFX(12);
     }
 
+    GameObject SpawnProjectile()
+    {
+        GameObject projectile = Instantiate(projectileGO, projectilePoint.position, projectilePoint.rotation);
+
+        int projectileDamage = projectile.GetComponent<PlayerProjectile>().damage;
+        projectile.GetComponent<PlayerProjectile>().damage = Mathf.RoundToInt(projectileDamage * damageModifier);
+
+        return projectile;
+    }
+
     void UpdateAmmoCounter()
     {
         UIController.Instance.ammoText.text = ammunition.ToString();
+    }
+
+    void UpdateWeaponHUD()
+    {
+        UIController.Instance.weaponHUD.sprite = weaponHUDImage;
+    }
+
+    public void ShowWeapon()
+    {
+        this.gameObject.SetActive(true);
+
+        UpdateWeaponHUD();
+        UpdateAmmoCounter();
+    }
+
+    public bool CanReload()
+    {
+        return ammunition < maximumAmmunition;
     }
 }
 

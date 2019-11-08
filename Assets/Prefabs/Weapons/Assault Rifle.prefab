@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &8847514319280930681
 Transform:
   m_ObjectHideFlags: 0
@@ -96,13 +96,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotType: 1
+  damageModifier: 1
   numberOfProjectiles: 3
-  timeBetweenShots: 1
+  maximumAmmunition: 24
+  reloadTime: 2
+  timeBetweenShots: 0.5
   burstDelay: 0.1
-  spreadAngle: {x: 0, y: 0}
+  spreadAngle: 0
   projectileGO: {fileID: 7668400660140434119, guid: 92f48b280e42971449cd6454956b70a1,
     type: 3}
   projectilePoint: {fileID: 4314837955159570583}
+  weaponHUDImage: {fileID: -2172343002418747524, guid: f72804754a2106a4884d758772ef2a02,
+    type: 3}
 --- !u!1 &9033993355784296899
 GameObject:
   m_ObjectHideFlags: 0

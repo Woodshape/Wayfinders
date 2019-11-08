@@ -119,7 +119,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1394928084}
   m_Layer: 5
-  m_Name: GameObject (1)
+  m_Name: Beat Target
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -154,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1598081032}
   m_Layer: 5
-  m_Name: GameObject
+  m_Name: Beat Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

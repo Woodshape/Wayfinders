@@ -127,9 +127,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotType: 2
   numberOfProjectiles: 3
-  timeBetweenShots: 1.5
+  maximumAmmunition: 12
+  reloadTime: 1.5
+  timeBetweenShots: 1
   burstDelay: 0
   spreadAngle: 25
   projectileGO: {fileID: 8576616828986510042, guid: d70d88da9bd737f49af6fade6097138f,
     type: 3}
   projectilePoint: {fileID: 5515573932958614536}
+  weaponHUDImage: {fileID: 141494655013890540, guid: f72804754a2106a4884d758772ef2a02,
+    type: 3}

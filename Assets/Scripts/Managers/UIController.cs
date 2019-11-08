@@ -14,6 +14,8 @@ public class UIController : MonoBehaviour
 
     public GameObject deathScreen;
 
+    public Image weaponHUD;
+
     void Awake()
     {
         if (Instance == null)

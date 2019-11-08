@@ -6,13 +6,14 @@ public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance;
 
+    public List<Weapon> weapons = new List<Weapon>();
+    private int currentWeapon;
+
     public Transform gunHand;
     public float moveSpeed;
     public float dashSpeed;
     public float dashLength;
     public float dashCooldown;
-
-    public Beater activeBeater;
 
     private float dashCounter;
     private float dashCoolCounter;
@@ -72,6 +73,17 @@ public class PlayerController : MonoBehaviour
             }
         }
 
+        // if (Input.GetKeyDown(KeyCode.R) && weapons[currentWeapon].CanReload())
+        // {
+        //     _myAnimator.SetBool("isReloading", true);
+        //     StartCoroutine(weapons[currentWeapon].ReloadWeapon());
+        // }
+
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            SwitchWeapon();
+        }
+
         HandleAnimation();
 
         Counter();
@@ -125,6 +137,56 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void SwitchWeapon()
+    {
+        if (weapons.Count > 0)
+        {
+            currentWeapon++;
+            if (currentWeapon >= weapons.Count) currentWeapon = 0;
+
+            foreach (Weapon weapon in weapons)
+            {
+                weapon.gameObject.SetActive(false);
+            }
+
+            weapons[currentWeapon].ShowWeapon();
+        }
+        else
+        {
+            Debug.LogError("NO WEAPONS AVAILIABLE ON PLAYER");
+        }
+    }
+
+    public bool PickupWeapon(Weapon weaponToPickup)
+    {
+        bool hasSameWeapon = false;
+
+        foreach (Weapon availiableWeapon in weapons)
+        {
+            if (availiableWeapon == weaponToPickup)
+            {
+                hasSameWeapon = true;
+            }
+        }
+
+        if (!hasSameWeapon)
+        {
+            Weapon weapon = Instantiate(weaponToPickup);
+            weapon.transform.parent = gunHand;
+            weapon.transform.position = gunHand.transform.position;
+            weapon.transform.localRotation = Quaternion.Euler(Vector3.zero);
+            weapon.transform.localScale = Vector3.one;
+
+            weapons.Add(weapon);
+
+            SwitchWeapon();
+
+            return true;
+        }
+
+        return false;
+    }
+
     public void FreezePlayer()
     {
         canMove = false;
@@ -141,5 +203,10 @@ public class PlayerController : MonoBehaviour
     public bool IsDashing()
     {
         return dashCounter > 0;
+    }
+
+    public Animator GetMyAnimator()
+    {
+        return _myAnimator;
     }
 }
